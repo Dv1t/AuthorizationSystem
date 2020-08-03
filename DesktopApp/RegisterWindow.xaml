@@ -24,7 +24,8 @@
         <TextBox Name="LoginBox" Grid.Row="1" Grid.Column="1" Margin="10" Padding="0" MaxLength="20" FontSize="22" PreviewMouseDown="ClearLoginField" LostFocus="FillLoginField">Login</TextBox>
         <PasswordBox Name="PasswordBox" Grid.Row="2" Grid.Column="1" Margin="10" Padding="0" MaxLength="20" FontSize="22" Password="******" LostFocus="FillPasswordField" PreviewMouseDown="ClearPasswordField"/>
         <PasswordBox Name="PasswordConfirmBox" Grid.Row="3" Grid.Column="1" Margin="10" Padding="0" MaxLength="20" FontSize="22" Password="******" LostFocus="FillPasswordField" PreviewMouseDown="ClearPasswordField"/>
-        <Button Grid.Row="4" Grid.Column="1"  Width="150" Margin="10" Click="ClickRegister">
+        <Button Grid.Row="4" Grid.Column="1" Margin="10" Width="150" FontSize="16" Click="ClickChooseIcon">Choose profile icon</Button>
+        <Button Grid.Row="5" Grid.Column="1"  Width="150" Margin="10" Height="40" Click="ClickRegister">
             <TextBlock FontSize="22" TextAlignment="Center" VerticalAlignment="Center">REGISTER</TextBlock>
         </Button>
     </Grid>

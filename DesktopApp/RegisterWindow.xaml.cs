@@ -3,10 +3,13 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 
 namespace UserApp
 {
@@ -15,6 +18,7 @@ namespace UserApp
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        private string _imgSource;
         private readonly string _connectionString;
         public RegisterWindow()
         {
@@ -55,15 +59,33 @@ namespace UserApp
                 MessageBox.Show("Введнные пароли должны совпадать");
                 return;
             }
-            string sql = $"INSERT INTO Users (Login,Password,Role) VALUES('{login}','{password}',1)";
+            //string sql = $"INSERT INTO Users (Login,Password,Role,Icon) VALUES('{login}','{password}',1,{_imgPicture})";
             SqlConnection connection = null;
             try
             {
                 connection = new SqlConnection(_connectionString);
                 connection.Open();
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = sql;
-                command.BeginExecuteNonQuery();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandText = @"INSERT INTO Users VALUES (@Login,@Password,@Role,@Icon)";
+                command.Parameters.Add("@Login", SqlDbType.NChar, 15);
+                command.Parameters.Add("@Password", SqlDbType.NVarChar, 50);
+                command.Parameters.Add("@Role", SqlDbType.Int);
+                command.Parameters.Add("@Icon", SqlDbType.Image, 1000000);
+
+                byte[] imageData;
+                using (System.IO.FileStream fs = new System.IO.FileStream(_imgSource, FileMode.Open))
+                {
+                    imageData = new byte[fs.Length];
+                    fs.Read(imageData, 0, imageData.Length);
+                }
+
+                command.Parameters["@Login"].Value =login;
+                command.Parameters["@Password"].Value = password;
+                command.Parameters["@Role"].Value = 1;
+                command.Parameters["@Icon"].Value = imageData;
+
+                command.ExecuteNonQuery();
                 MessageBox.Show("Новый пользователь  зарегестрирован");
             }
             catch (Exception ex)
@@ -74,6 +96,17 @@ namespace UserApp
             {
                 connection?.Close();
             }
+        }
+
+        private void ClickChooseIcon(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofdPicture = new OpenFileDialog();
+            ofdPicture.Filter =
+                "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
+            ofdPicture.FilterIndex = 1;
+
+            if (ofdPicture.ShowDialog() == true)
+                _imgSource = ofdPicture.FileName;
         }
     }
 }

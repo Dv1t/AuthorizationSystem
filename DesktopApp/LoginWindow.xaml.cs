@@ -5,6 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Configuration;
 using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Windows.Media.Imaging;
+using Image = System.Windows.Controls.Image;
 
 namespace UserApp
 {
@@ -64,8 +68,15 @@ namespace UserApp
                 adapter.Fill(userTable);
                 if (userTable.Rows.Count == 1)
                 {
-                    User user = new User {Login = login, Role = int.Parse(userTable.Rows[0]["Role"].ToString())};
-                    MessageBox.Show(user.Id.ToString());
+                    BitmapImage icon = new BitmapImage();
+                    icon.BeginInit();
+                    icon.CacheOption = BitmapCacheOption.OnLoad;
+                    icon.StreamSource = new MemoryStream((byte[])userTable.Rows[0]["Icon"]);
+                    icon.EndInit();
+                    User user = new User (password, login,int.Parse(userTable.Rows[0]["Role"].ToString()), int.Parse(userTable.Rows[0]["id"].ToString()), icon);
+                    LoggedInWindow authorizedWindow = new LoggedInWindow(user);
+                    authorizedWindow.Show();
+                    Close();
                 }
                 else
                 {

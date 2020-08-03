@@ -15,3 +15,5 @@ D:\Учёба\WPF\UserApp\UserApp\obj\Debug\UserApp.csproj.GenerateResource.cach
 D:\Учёба\WPF\UserApp\UserApp\obj\Debug\UserApp.csproj.CoreCompileInputs.cache
 D:\Учёба\WPF\UserApp\UserApp\obj\Debug\UserApp.exe
 D:\Учёба\WPF\UserApp\UserApp\obj\Debug\UserApp.pdb
+D:\Учёба\WPF\UserApp\UserApp\obj\Debug\LoggedInWindow.g.cs
+D:\Учёба\WPF\UserApp\UserApp\obj\Debug\LoggedInWindow.baml
