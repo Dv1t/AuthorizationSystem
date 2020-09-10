@@ -1,0 +1,15 @@
+D:\Учёба\WPF\UserApp\CustomControls\bin\Debug\CustomControls.dll
+D:\Учёба\WPF\UserApp\CustomControls\bin\Debug\CustomControls.pdb
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.csprojAssemblyReference.cache
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.g.resources
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.Properties.Resources.resources
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.csproj.GenerateResource.cache
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.csproj.CoreCompileInputs.cache
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.dll
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls.pdb
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls_MarkupCompile.cache
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControls_MarkupCompile.lref
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\CustomControl1Style.baml
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\Themes\Generic.baml
+D:\Учёба\WPF\UserApp\CustomControls\obj\Debug\WheelControlStyle.baml
