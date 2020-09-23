@@ -54,6 +54,11 @@ namespace UserApp
             string login = LoginBox.Text.ToString();
             string password = PasswordBox.Password.ToString();
             string confirmPassword = PasswordConfirmBox.Password.ToString();
+            if((login.Length==0)||(password.Length==0)||(login=="Login") || (password == "******"))
+            {
+                MessageBox.Show("Заполните все поля");
+                return;
+            }
             if (password != confirmPassword)
             {
                 MessageBox.Show("Введнные пароли должны совпадать");
@@ -74,17 +79,25 @@ namespace UserApp
                 command.Parameters.Add("@Icon", SqlDbType.Image, 1000000);
 
                 byte[] imageData;
-                using (System.IO.FileStream fs = new System.IO.FileStream(_imgSource, FileMode.Open))
+                try
                 {
-                    imageData = new byte[fs.Length];
-                    fs.Read(imageData, 0, imageData.Length);
-                }
+                    using (System.IO.FileStream fs = new System.IO.FileStream(_imgSource, FileMode.Open))
+                    {
+                        imageData = new byte[fs.Length];
+                        fs.Read(imageData, 0, imageData.Length);
+               
 
                 command.Parameters["@Login"].Value =login;
                 command.Parameters["@Password"].Value = password;
                 command.Parameters["@Role"].Value = 1;
                 command.Parameters["@Icon"].Value = imageData;
-
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Выберите изображение для иконки пользователя");
+                    return;
+                }
                 command.ExecuteNonQuery();
                 MessageBox.Show("Новый пользователь  зарегестрирован");
             }
